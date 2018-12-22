@@ -54,7 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Packages\PackageLogic.cs" />
+    <Compile Include="Packagess\PackageLogic.cs" />
     <Compile Include="Interfaces\IEventLogic.cs" />
     <Compile Include="Interfaces\ILogic.cs" />
     <Compile Include="Interfaces\IPackageLogic.cs" />
