@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FluentValidation;
+using System;
 using System.Linq;
 using WebApp.Logic.Interfaces;
 using WebApp.Logic.Repositories;
@@ -8,11 +9,14 @@ namespace WebApp.Logic.Events
 {
     public class PackageLogic : IPackageLogic
     {
-        public IPackageRepository Repository { get; set; }
+        protected IPackageRepository Repository { get; set; }
 
-        public PackageLogic(IPackageRepository repository)
+        protected IValidator<Package> Validator { get; set; }
+
+        public PackageLogic(IPackageRepository repository, IValidator<Package> validator)
         {
             Repository = repository;
+            Validator = validator;
         }
 
         public Result<Package> Add(Package package)
@@ -22,7 +26,12 @@ namespace WebApp.Logic.Events
                 throw new ArgumentNullException("produkt");
             }
 
-            //Validation here for update 
+            var validationResult = Validator.Validate(package);
+
+            if (validationResult.IsValid == false)
+            {
+                return Result.Error<Package>(validationResult.Errors);
+            }
 
             Repository.Add(package);
             Repository.SaveChanges();

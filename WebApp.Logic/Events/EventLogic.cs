@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FluentValidation;
+using System;
 using System.Linq;
 using WebApp.Logic.Interfaces;
 using WebApp.Logic.Repositories;
@@ -10,9 +11,12 @@ namespace WebApp.Logic.Packages
     {
         protected IEventRepository Repository { get; set; }
 
-        public EventLogic(IEventRepository repository)
+        protected IValidator<Event> Validator { get; set; }
+
+        public EventLogic(IEventRepository repository, IValidator<Event> validator)
         {
             Repository = repository;
+            Validator = validator;
         }
 
         public Result<Event> GetById(int id)
@@ -32,6 +36,13 @@ namespace WebApp.Logic.Packages
             if (_event == null)
             {
                 throw new ArgumentNullException("event");
+            }
+
+            var validationResult = Validator.Validate(_event);
+
+            if (validationResult.IsValid == false)
+            {
+                return Result.Error<Event>(validationResult.Errors);
             }
 
             Repository.Add(_event);
