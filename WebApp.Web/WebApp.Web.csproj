@@ -210,6 +210,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\AutofacConfig.cs" />
+    <Compile Include="App_Start\AutofacModules\AutomapperModule.cs" />
+    <Compile Include="App_Start\AutofacModules\ControlerModule.cs" />
+    <Compile Include="App_Start\AutofacModules\DataAccessModule.cs" />
+    <Compile Include="App_Start\AutofacModules\LogicModule.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
