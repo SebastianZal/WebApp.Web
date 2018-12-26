@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using WebApp.Web.App_Start;
 
 namespace WebApp.Web
 {
@@ -12,6 +13,7 @@ namespace WebApp.Web
     {
         protected void Application_Start()
         {
+            AutofacConfig.Configure();
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
