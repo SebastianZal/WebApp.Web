@@ -7,6 +7,12 @@
     @Styles.Render("~/Content/ej/web/bootstrap-theme/ej.web.all.min.css")
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+
+    <script>
+     if (typeof (ej.globalize) != 'undefined') {
+     ej.globalize.preferredCulture('@System.Threading.Thread.CurrentThread.CurrentCulture.Name');
+     }
+    </script>
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -37,6 +43,7 @@
         </footer>
     </div>
 
+    @Scripts.Render("~/Scripts/ej/i18n/ej.culture." + System.Globalization.CultureInfo.CurrentCulture.Name.ToString() + ".min.js")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/Scripts/jsrender.min.js")

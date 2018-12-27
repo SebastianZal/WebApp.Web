@@ -1,11 +1,25 @@
-﻿@{
+﻿
+@model IEnumerable<WebApp.Web.ViewModels.Events.EventViewModel>
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Wydarzenia";
 }
 
-<h2>Index</h2>
-
-<p>Hello from our View Template!</p>
+<h2>Wydarzenia</h2>
+@(Html.EJ().Schedule("Wydarzenia")
+                    .Width("100%")
+                    .Height("550px")
+                    .StartHour(9)
+                    .EndHour(20)
+                    .CurrentDate(new DateTime(DateTime.Today.Year, DateTime.Today.Month, DateTime.Today.Day))
+                    .ShowAppointmentNavigator(false)
+                    .AppointmentSettings(fields => fields.Datasource(dataSource => dataSource.URL(Url.Action("DataSource")).Adaptor(AdaptorType.UrlAdaptor))
+                        .Id("Id")
+                        .Subject("Name")
+                        .StartTime("Start")
+                        .EndTime("End")
+                        .Description("Comment"))
+)

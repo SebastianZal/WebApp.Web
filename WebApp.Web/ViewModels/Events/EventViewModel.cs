@@ -12,7 +12,7 @@ namespace WebApp.Web.ViewModels.Events
     {
         public int Id {get;set;}
 
-        [Required(ErrorMessage = "Imie jest wymagana")]
+        [Required(ErrorMessage = "Imie jest wymagane")]
         public string Name { get; set; }
 
         public int Age { get; set; }
@@ -29,6 +29,7 @@ namespace WebApp.Web.ViewModels.Events
 
         public string Comment { get; set; }
 
+        [HiddenInput(DisplayValue = false)]
         public int PackageId { get; set; }
 
         //public Package Package { get; set; }

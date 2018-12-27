@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using Syncfusion.JavaScript;
+using Syncfusion.JavaScript.DataSources;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
@@ -27,11 +29,11 @@ namespace WebApp.Web.Controllers
         // GET: Event
         public ActionResult Index()
         {
-            var result = Logic.GetAllActive();
+           // var result = Logic.GetAllFromCurrentMonth();
 
-            var viewModel = Mapper.Map<List<EventViewModel>>(result.Value.ToList());
+            //var viewModel = Mapper.Map<List<EventViewModel>>(result.Value.ToList());
 
-            return View(viewModel);
+            return View();
         }
 
         public ActionResult Create()
@@ -64,6 +66,25 @@ namespace WebApp.Web.Controllers
             }
 
             return RedirectToAction("Index");
+        }
+
+        public ActionResult DataSource(DataManager dataManager)
+        {
+            var eventResult = Logic.GetAllFromCurrentMonth();
+
+            var operation = new DataOperations();
+
+            var _events = operation.Execute(eventResult.Value, dataManager);
+
+            var viewModels = Mapper.Map<List<EventViewModel>>(_events.ToList());
+
+            return Json(new
+            {
+                result = viewModels,
+                count = eventResult.Value.Count()
+            }
+                , JsonRequestBehavior.AllowGet
+                );
         }
     }
 }
