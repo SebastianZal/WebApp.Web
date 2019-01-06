@@ -12,6 +12,7 @@
 @(Html.EJ().Schedule("Wydarzenia")
                     .Width("100%")
                     .Height("550px")
+                    .Locale(System.Threading.Thread.CurrentThread.CurrentCulture.Name)
                     .StartHour(9)
                     .EndHour(20)
                     .CurrentDate(new DateTime(DateTime.Today.Year, DateTime.Today.Month, DateTime.Today.Day))

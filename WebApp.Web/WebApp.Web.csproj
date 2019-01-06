@@ -690,6 +690,8 @@
     <Content Include="Scripts\ej\i18n\ej.culture.en-US.min.js" />
     <Content Include="Scripts\ej\i18n\ej.culture.es-ES.min.js" />
     <Content Include="Scripts\ej\i18n\ej.culture.fr-FR.min.js" />
+    <Content Include="Scripts\ej\i18n\ej.culture.pl-PL.min.js" />
+    <Content Include="Scripts\ej\i18n\ej.culture.pl.min.js" />
     <Content Include="Scripts\ej\i18n\ej.culture.vi-VN.min.js" />
     <Content Include="Scripts\ej\i18n\ej.culture.zh-CN.min.js" />
     <Content Include="Scripts\ej\l10n\ej.localetexts.ar-AE.min.js" />
@@ -698,6 +700,8 @@
     <Content Include="Scripts\ej\l10n\ej.localetexts.en-US.min.js" />
     <Content Include="Scripts\ej\l10n\ej.localetexts.es-ES.min.js" />
     <Content Include="Scripts\ej\l10n\ej.localetexts.fr-FR.min.js" />
+    <Content Include="Scripts\ej\l10n\ej.localetexts.pl-PL.js" />
+    <Content Include="Scripts\ej\l10n\ej.localetexts.pl-PL.min.js" />
     <Content Include="Scripts\ej\l10n\ej.localetexts.vi-VN.min.js" />
     <Content Include="Scripts\ej\l10n\ej.localetexts.zh-CN.min.js" />
     <Content Include="Scripts\ej\l10n\reportdesigner\ej.localetexts.de-DE.min.js" />
