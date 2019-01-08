@@ -10,11 +10,14 @@
 
 <h2>Wydarzenia</h2>
 @(Html.EJ().Schedule("Wydarzenia")
-                    .Width("100%")
-                    .Height("550px")
+                    .Width("1200px")
+                    .Height("575px")
+                    .CellHeight("20px")
+                    .TimeScale(ts => ts.Enable(true).majorSlot(60).minorSlotCount(2).Equals(60))
                     .Locale(System.Threading.Thread.CurrentThread.CurrentCulture.Name)
                     .StartHour(9)
                     .EndHour(20)
+                    .ShowQuickWindow(false)
                     .CurrentDate(new DateTime(DateTime.Today.Year, DateTime.Today.Month, DateTime.Today.Day))
                     .ShowAppointmentNavigator(false)
                     .AppointmentSettings(fields => fields.Datasource(dataSource => dataSource.URL(Url.Action("DataSource")).Adaptor(AdaptorType.UrlAdaptor))

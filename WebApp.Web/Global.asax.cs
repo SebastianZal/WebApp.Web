@@ -13,6 +13,7 @@ namespace WebApp.Web
     {
         protected void Application_Start()
         {
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NTgzNDNAMzEzNjJlMzQyZTMwUjltYTlEbk5GR0EzTUw1VExGZEw1S0F4NU9UbTBJbWxEbUUvamU5MTBuVT0=");
             AutofacConfig.Configure();
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
