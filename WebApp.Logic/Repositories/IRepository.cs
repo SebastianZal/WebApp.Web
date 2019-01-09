@@ -13,6 +13,8 @@ namespace WebApp.Logic.Repositories
 
         IQueryable<T> GetAllActive();
 
+        void Update(T model);
+
         void SaveChanges();
     }
 }

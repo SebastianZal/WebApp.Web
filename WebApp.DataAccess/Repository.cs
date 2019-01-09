@@ -36,5 +36,17 @@ namespace WebApp.DataAccess
         {
             Db.SaveChanges();
         }
+
+        public void Update (T model)
+        {
+            var result = Db.Set<T>().Where(m => m.Id == model.Id).First();
+
+            if(result != null)
+            {
+                result = model;
+
+                Db.SaveChanges();
+            }
+        }
     }
 }
