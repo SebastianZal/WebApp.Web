@@ -65,10 +65,27 @@ namespace WebApp.Logic.Packages
         {
             if (viewMonth == null)
             {
-                throw new ArgumentNullException("GetAllFromGivenMonth");
+                throw new ArgumentNullException("event_GetAllFromGivenMonth");
             }
 
             return Result.Ok(Repository.GetAllFromGivenMonth(viewMonth));
+        }
+
+        public Result<IQueryable<Event>> Remove(int event_id)
+        {
+            var _event = Repository.GetById(event_id);
+
+            if (_event == null)
+            {
+                return Result.Error<IQueryable<Event>>("Brak zdarzenia o podanym Id");
+            }
+
+            var mydate = _event.Start;
+
+            Repository.Delete(_event);
+            Repository.SaveChanges();
+
+            return Result.Ok(Repository.GetAllFromGivenMonth(mydate));
         }
     }
 }

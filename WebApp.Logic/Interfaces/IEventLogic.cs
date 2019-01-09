@@ -15,5 +15,7 @@ namespace WebApp.Logic.Interfaces
         Result<IQueryable<Event>> GetAllFromCurrentMonth();
 
         Result<IQueryable<Event>> GetAllFromGivenMonth(DateTime viewMonth);
+
+        Result<IQueryable<Event>> Remove(int event_id);
     }
 }
