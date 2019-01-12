@@ -19,8 +19,9 @@
                             .ShowQuickWindow(false)
                             .CurrentDate(new DateTime(DateTime.Today.Year, DateTime.Today.Month, DateTime.Today.Day))
                             .ShowAppointmentNavigator(false)
-                            .AppointmentSettings(fields => fields.Datasource(ds => ds.URL(Url.Action("DataSource")).Adaptor(AdaptorType.UrlAdaptor).RemoveURL(Url.Action("remove")).Adaptor(AdaptorType.UrlAdaptor))
-                                
+                            .ShowDeleteConfirmationDialog(true)
+                            .AllowDragAndDrop(false)
+                            .AppointmentSettings(fields => fields.Datasource(ds => ds.URL(Url.Action("DataSource")).BatchURL(Url.Action("Crud")).RemoveURL(Url.Action("remove")).Adaptor(AdaptorType.UrlAdaptor))  
                                 .Id("Id")
                                 .Subject("Name")
                                 .StartTime("Start")

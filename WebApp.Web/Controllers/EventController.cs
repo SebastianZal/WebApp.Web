@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Syncfusion.JavaScript;
 using Syncfusion.JavaScript.DataSources;
+using Syncfusion.JavaScript.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,11 +31,6 @@ namespace WebApp.Web.Controllers
         // GET: Event
         public ActionResult Index()
         {
-            //var result = Logic.GetAllFromCurrentMonth();
-
-            
-            //var viewModel = Mapper.Map<List<EventViewModel>>(result.Value.ToList());
-
             return View();
         }
 
@@ -111,6 +107,49 @@ namespace WebApp.Web.Controllers
             }
             , JsonRequestBehavior.AllowGet
             );
+        }
+
+        public ActionResult update (Appointment value, DataManager dataManager)
+        {
+            var event_id = Convert.ToInt32(value.Id);
+
+            var events = Logic.Update(event_id);
+
+            var operation = new DataOperations();
+
+            var _events = operation.Execute(events.Value, dataManager);
+
+            var viewModels = Mapper.Map<List<EventViewModel>>(_events.ToList());
+
+            return Json(new
+            {
+                result = viewModels,
+                count = events.Value.Count()
+            }
+            , JsonRequestBehavior.AllowGet
+            );
+        }
+
+        public ActionResult Crud(EditParams param, DataManager dataManager)
+        {
+            
+            if (param.action == "insert" || (param.action == "batch" && param.added != null))  // this block of code will execute while inserting the appointments
+            {
+                var asd = "asd";
+            }
+            else if ((param.action == "batch" && param.changed != null) || param.action == "update")   // this block of code will execute while updating the appointment
+            {
+                var asd = "asd";
+            }
+            return View();
+        }
+        public class EditParams
+        {
+            public string key { get; set; }
+            public string action { get; set; }
+            public List<Appointment> added { get; set; }
+            public List<Appointment> changed { get; set; }
+            public Appointment value { get; set; }
         }
     }
 }
