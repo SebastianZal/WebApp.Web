@@ -85,28 +85,43 @@ namespace WebApp.Web.Controllers
             );
         }
 
-        public ActionResult remove (string key, DataManager dataManager)
+        //public ActionResult remove (string key, DataManager dataManager)
+        //{
+        //    var event_id = Convert.ToInt32(key);
+
+        //    var events = Logic.Remove(event_id);
+
+        //    if (events.Success == false)
+        //        return RedirectToAction("Index");
+
+        //    var operation = new DataOperations();
+
+        //    var _events = operation.Execute(events.Value, dataManager);
+
+        //    var viewModels = Mapper.Map<List<EventViewModel>>(_events.ToList());
+
+        //    return Json(new
+        //    {
+        //        result = viewModels,
+        //        count = events.Value.Count()
+        //    }
+        //    , JsonRequestBehavior.AllowGet
+        //    );
+        //}
+
+        public JsonResult remove(string key)
         {
             var event_id = Convert.ToInt32(key);
 
             var events = Logic.Remove(event_id);
 
-            if (events.Success == false)
-                return RedirectToAction("Index");
+            //if (events.Success == false)
+            //    return RedirectToAction("Index");
 
-            var operation = new DataOperations();
 
-            var _events = operation.Execute(events.Value, dataManager);
+            var viewModels = Mapper.Map<List<EventViewModel>>(events.Value.ToList());
 
-            var viewModels = Mapper.Map<List<EventViewModel>>(_events.ToList());
-
-            return Json(new
-            {
-                result = viewModels,
-                count = events.Value.Count()
-            }
-            , JsonRequestBehavior.AllowGet
-            );
+            return Json(viewModels, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult update (Appointment value, DataManager dataManager)
